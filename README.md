@@ -1,321 +1,131 @@
 # Student Environment Check
 
-Minimal Spring Boot application used to verify backend development environment.
+Gotowa aplikacja Spring Boot do sprawdzenia środowiska. Nie trzeba dopisywać kodu.
 
-Supported paths:
+Obsługiwane środowiska: Linux oraz Windows PowerShell. Na Windows używaj natywnego JDK 25; SDKMAN! działa tylko na Linuxie.
 
-- Linux terminal,
-- native Windows PowerShell.
+## Aplikacja
 
-Student does not need to write or modify code.
-
-Application uses Java 25, Spring Boot, Gradle, MongoDB, Podman, Compose, minikube, kubectl, Postman and Testcontainers.
-
-## Application
-
-Application exposes two endpoints:
-
-| Method | URL | Description |
+| Metoda | Adres | Cel |
 |---|---|---|
-| `GET` | `/api/notes` | Reads all notes from MongoDB |
-| `POST` | `/api/notes` | Adds one note to MongoDB |
+| `GET` | `http://localhost:8080/api/notes` | Pobiera notatki z MongoDB |
+| `POST` | `http://localhost:8080/api/notes` | Zapisuje notatkę w MongoDB |
 
-Default configuration:
+Domyślna baza: `student_environment`, kolekcja: `notes`.
 
-| Setting | Value |
-|---|---|
-| Application URL | `http://localhost:8080` |
-| MongoDB URI | `mongodb://localhost:27017/student_environment` |
-| Database | `student_environment` |
-| Collection | `notes` |
+## Checklista
 
-## Choose One Path
+```text
+[ ] Discord: konto, aplikacja, Allegro UMK 26/27, #backend
+[ ] GitHub: aktywne konto
+[ ] Git: działa
+[ ] Repozytorium: sklonowane
+[ ] Java i javac: wersja 25
+[ ] Gradle: JVM 25
+[ ] IntelliJ IDEA: import, kompilacja, uruchomienie
+[ ] Podman i Podman Desktop: działają
+[ ] Podman hello-world: działa
+[ ] mongosh: wersja > 2.3
+[ ] MongoDB: kontener i połączenie działają
+[ ] Testcontainers: testy działają z IDE i terminala
+[ ] Postman: GET 200, POST 201
+[ ] MongoDB Compass: widzi zapisany dokument
+[ ] Podman: obraz i kontener aplikacji działają
+[ ] Compose: aplikacja i MongoDB działają
+[ ] minikube: klaster działa z Podmanem
+[ ] kubectl: pody Kubernetes działają
+[ ] Android Studio: emulator uruchamia aplikację
+```
+
+## 1. Discord i GitHub
+
+1. Zainstaluj Discord: <https://discord.com/download>.
+2. Załóż lub zaloguj konto.
+3. Dołącz do serwera `Allegro UMK 26/27` i kanału `#backend`.
+4. Załóż lub zaloguj konto GitHub: <https://github.com/join>.
+
+## 2. Git i repozytorium
 
 ### Linux
-
-Run commands marked `Linux` in a terminal. Install Java 25 through SDKMAN!.
-
-### Windows
-
-Run commands marked `Windows PowerShell` in PowerShell. Install Git for Windows, JDK 25 and Podman Desktop natively. WSL is not required.
-
-SDKMAN! does not support native PowerShell. Therefore the Windows path installs JDK 25 directly. Both paths must produce Java 25 in `java -version` and in Gradle.
-
-## Final Checklist
-
-```text
-[ ] Discord account, application and #backend channel
-[ ] GitHub account
-[ ] Git works
-[ ] Repository is cloned
-[ ] Java 25 is installed
-[ ] `java -version` and `javac -version` indicate Java 25
-[ ] Gradle uses Java 25
-[ ] IntelliJ IDEA opens the project
-[ ] Podman CLI works
-[ ] Podman Desktop starts
-[ ] podman run hello-world works
-[ ] MongoDB Shell version is greater than 2.3
-[ ] MongoDB container starts
-[ ] MongoDB Shell connects to MongoDB
-[ ] MongoDB Compass connects to MongoDB
-[ ] Testcontainers integration test passes
-[ ] Gradle build passes
-[ ] Application starts from IntelliJ IDEA
-[ ] GET endpoint works in Postman
-[ ] POST endpoint works in Postman
-[ ] Saved note is visible in MongoDB Compass
-[ ] Application image builds with Podman
-[ ] Application runs in Podman
-[ ] Compose starts the application and MongoDB
-[ ] minikube starts with the Podman driver
-[ ] kubectl shows running Kubernetes pods
-[ ] Application works in Kubernetes
-[ ] Android Studio and emulator work
-```
-
-## 1. Discord
-
-Install Discord:
-
-```text
-https://discord.com/download
-```
-
-Create an account or sign in. Join the Allegro UMK 25/26 server and open channel:
-
-```text
-#backend
-```
-
-Check:
-
-```text
-[ ] Discord account is active
-[ ] Discord application is installed
-[ ] Allegro UMK 25/26 server is available
-[ ] #backend channel is available
-```
-
-## 2. GitHub
-
-Open:
-
-```text
-https://github.com/join
-```
-
-Create an account or sign in.
-
-Check:
-
-```text
-[ ] GitHub account is active
-[ ] Student can sign in to GitHub
-```
-
-## 3. Git
-
-### Linux
-
-Debian or Ubuntu:
 
 ```bash
 sudo apt update
 sudo apt install -y git
-```
-
-For another distribution, follow:
-
-```text
-https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-```
-
-Check:
-
-```bash
 git --version
+git clone https://github.com/mmaszkie/demo.git
+cd demo
+git status
 ```
 
 ### Windows PowerShell
-
-Install Git for Windows:
-
-```text
-https://git-scm.com/download/win
-```
-
-Alternatively use WinGet:
 
 ```powershell
 winget install --id Git.Git -e
-```
-
-Close and reopen PowerShell, then check:
-
-```powershell
 git --version
-```
-
-Expected result: Git version is printed.
-
-Check:
-
-```text
-[ ] Git is installed
-[ ] `git --version` works
-```
-
-## 4. Clone Repository
-
-Clone the repository using the URL provided by the course.
-
-HTTPS example:
-
-```bash
-git clone https://github.com/<owner>/<repository>.git
-```
-
-SSH example:
-
-```bash
-git clone git@github.com:<owner>/<repository>.git
-```
-
-Enter the repository directory:
-
-### Linux
-
-```bash
-cd <repository-directory>
+git clone https://github.com/mmaszkie/demo.git
+cd demo
 git status
-ls
 ```
 
-### Windows PowerShell
+SSH, jeśli jest skonfigurowane:
 
-```powershell
-cd <repository-directory>
-git status
-Get-ChildItem
+```bash
+git clone git@github.com:mmaszkie/demo.git
 ```
 
-The directory must contain:
+Sprawdź:
 
 ```text
-build.gradle
-gradlew
-gradlew.bat
-src/
+[ ] `git --version` wyświetla wersję Git
+[ ] `git status` kończy się bez błędu
+[ ] Katalog zawiera `build.gradle`, `gradlew`, `gradlew.bat` i `src`
 ```
 
-Check:
+## 3. Java 25
 
-```text
-[ ] Repository was cloned
-[ ] `git status` works
-[ ] `build.gradle`, Gradle Wrapper and `src` exist
-```
-
-## 5. Java 25
-
-### Linux With SDKMAN!
-
-Install required tools:
+### Linux: SDKMAN!
 
 ```bash
 sudo apt install -y curl zip unzip
-```
-
-Install SDKMAN!:
-
-```bash
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
-```
-
-Check SDKMAN!:
-
-```bash
-sdk version
-```
-
-Install Java 25:
-
-```bash
 sdk install java 25.0.2-open
 sdk default java 25.0.2-open
-```
-
-Check:
-
-```bash
 java -version
 javac -version
 ```
 
-### Windows PowerShell
-
-Install JDK 25 natively. Use one method.
-
-Method A, WinGet:
-
-```powershell
-winget search OpenJDK
-```
-
-Install a listed JDK 25 distribution. Example, if available:
-
-```powershell
-winget install --id Microsoft.OpenJDK.25 -e
-```
-
-Method B, download JDK 25:
-
-```text
-https://jdk.java.net/archive
-```
-
-After installation, close and reopen PowerShell. Check:
-
-```powershell
-java -version
-javac -version
-```
-
-Both commands must indicate Java 25.
-
-### Troubleshooting
-
-On Linux, if `25.0.2-open` is unavailable, find an available JDK 25:
+Jeśli `25.0.2-open` nie jest dostępne:
 
 ```bash
 sdk list java
 ```
 
-Install an available Java 25 distribution and set it as default.
+Zainstaluj dostępną dystrybucję JDK 25.
 
-On Windows, if the system cannot find Java, configure `JAVA_HOME`, add `%JAVA_HOME%\bin` to the system `Path`, and open a new PowerShell window. Then repeat:
+### Windows PowerShell
+
+Zainstaluj JDK 25 przez WinGet lub z <https://jdk.java.net/archive>:
 
 ```powershell
-$env:JAVA_HOME
+winget search OpenJDK
+winget install --id Microsoft.OpenJDK.25 -e
 java -version
 javac -version
 ```
 
-Check:
+Jeśli PowerShell nie znajduje Java, ustaw `JAVA_HOME`, dodaj `%JAVA_HOME%\bin` do `Path`, otwórz nowy terminal i ponów komendy.
+
+Sprawdź:
 
 ```text
-[ ] Java 25 is installed
-[ ] `java -version` indicates Java 25
-[ ] `javac -version` indicates Java 25
-[ ] On Linux, Java was installed through SDKMAN!
-[ ] On Windows, `JAVA_HOME` and `Path` point to JDK 25 if required
+[ ] `java -version` wskazuje Java 25
+[ ] `javac -version` wskazuje Java 25
+[ ] Linux: Java została zainstalowana przez SDKMAN!
+[ ] Windows: JDK 25 jest dostępne w `Path`
 ```
 
-## 6. Gradle Wrapper
-
-Do not install Gradle separately. Use the wrapper included in the repository.
+## 4. Gradle Wrapper
 
 ### Linux
 
@@ -330,486 +140,151 @@ chmod +x gradlew
 .\gradlew.bat --version
 ```
 
-The `JVM` line must indicate Java 25.
-
-Check:
+Sprawdź:
 
 ```text
-[ ] Gradle Wrapper starts
-[ ] Gradle uses JVM 25
+[ ] Gradle Wrapper uruchamia się
+[ ] Linia `JVM` wskazuje Java 25
+[ ] Nie używasz osobnej instalacji Gradle
 ```
 
-### Troubleshooting
+Troubleshooting Linux: `Permission denied` naprawia `chmod +x gradlew`.
 
-If Linux reports `Permission denied` for `gradlew`:
+## 5. Podman i Podman Desktop
 
-```bash
-chmod +x gradlew
-./gradlew --version
-```
-
-## 7. Podman CLI and Podman Desktop
-
-Install Podman CLI and Podman Desktop:
-
-```text
-https://podman.io/
-```
+Zainstaluj Podman oraz Podman Desktop: <https://podman.io/>.
 
 ### Linux
 
-Install Podman according to the documentation for your distribution. Start Podman Desktop and check:
+Zainstaluj pakiet dla swojej dystrybucji, potem:
 
 ```bash
 podman --version
 podman info
+podman run hello-world
 ```
 
 ### Windows PowerShell
 
-Install Podman Desktop for Windows:
-
-```text
-https://podman-desktop.io/downloads
-```
-
-Open PowerShell. Initialize a machine only if one does not exist:
+Zainstaluj Podman Desktop: <https://podman-desktop.io/downloads>.
 
 ```powershell
 podman machine init
-```
-
-Start it:
-
-```powershell
 podman machine start
-```
-
-Check:
-
-```powershell
 podman --version
 podman info
-```
-
-### Hello World
-
-Linux:
-
-```bash
 podman run hello-world
 ```
 
-Windows PowerShell:
-
-```powershell
-podman run hello-world
-```
-
-Expected output contains:
+Sprawdź:
 
 ```text
-Hello Podman World
+[ ] `podman --version` działa
+[ ] `podman info` działa
+[ ] `podman run hello-world` zawiera `Hello Podman World`
+[ ] Podman Desktop uruchamia się bez błędu
 ```
 
-Check:
+Troubleshooting Windows: jeśli machine istnieje, pomiń `podman machine init`; jeśli jest zatrzymana, uruchom `podman machine start`.
 
-```text
-[ ] `podman --version` works
-[ ] `podman info` works
-[ ] `podman run hello-world` works
-[ ] Output contains `Hello Podman World`
-[ ] Podman Desktop starts
-```
+## 6. MongoDB Shell i kontener
 
-### Troubleshooting
+Zainstaluj MongoDB Shell: <https://www.mongodb.com/docs/mongodb-shell/install/>.
 
-If the Podman machine is not running on Windows:
-
-```powershell
-podman machine start
-podman info
-```
-
-## 8. MongoDB Shell
-
-Install MongoDB Shell:
-
-```text
-https://www.mongodb.com/docs/mongodb-shell/install/
-```
-
-Install the Linux or Windows package according to official instructions.
-
-### Linux
+Sprawdź w terminalu, gdzie zainstalowano `mongosh`:
 
 ```bash
 mongosh --version
 ```
 
-### Windows PowerShell
+Sprawdź: `mongosh --version` zwraca wersję większą od `2.3`.
 
-```powershell
-mongosh --version
-```
-
-The version must be greater than `2.3`.
-
-Check:
-
-```text
-[ ] `mongosh --version` works
-[ ] Version is greater than 2.3
-```
-
-## 9. MongoDB Container
-
-### Linux
+Uruchom MongoDB w terminalu używanym do Podmana:
 
 ```bash
 podman run --name student-mongo -p 27017:27017 -d docker.io/library/mongo:8
-```
-
-### Windows PowerShell
-
-```powershell
-podman run --name student-mongo -p 27017:27017 -d docker.io/library/mongo:8
-```
-
-If the container already exists:
-
-```bash
-podman start student-mongo
-```
-
-Check:
-
-```bash
 podman ps
-```
-
-Connect with MongoDB Shell:
-
-```bash
 mongosh "mongodb://localhost:27017/student_environment"
 ```
 
-Run inside `mongosh`:
+W `mongosh`:
 
 ```javascript
 db.runCommand({ ping: 1 })
-```
-
-Expected result contains:
-
-```text
-ok: 1
-```
-
-Exit:
-
-```javascript
 exit
 ```
 
-Check:
+Sprawdź:
 
 ```text
-[ ] MongoDB container starts
-[ ] `podman ps` shows `student-mongo`
-[ ] `mongosh` connects
-[ ] MongoDB ping returns `ok: 1`
+[ ] `podman ps` pokazuje `student-mongo`
+[ ] `mongosh` łączy się z `localhost:27017`
+[ ] `db.runCommand({ ping: 1 })` zwraca `ok: 1`
 ```
 
-### Troubleshooting
-
-If port `27017` is already in use, list all containers:
-
-```bash
-podman ps -a
-```
-
-Stop and remove the old `student-mongo` container only if its data is no longer needed:
+Troubleshooting: jeśli port `27017` jest zajęty, sprawdź `podman ps -a`. Zatrzymaj i usuń stary `student-mongo` tylko gdy dane nie są potrzebne:
 
 ```bash
 podman stop student-mongo
 podman rm student-mongo
 ```
 
-Then run the MongoDB container again.
+## 7. IntelliJ IDEA
 
-## 10. IntelliJ IDEA
+Zainstaluj IntelliJ IDEA Community: <https://www.jetbrains.com/idea/download/>.
 
-Install IntelliJ IDEA Community Edition:
+1. Wybierz `Open`, wskaż katalog `demo`, zaakceptuj `Trust Project`.
+2. Poczekaj na import Gradle; w oknie Gradle pojawią się zadania `build`, `test` i `bootRun`.
+3. Otwórz `File` -> `Project Structure` -> `Project` i ustaw `Project SDK` na JDK 25.
+4. Jeśli Java 25 nie jest widoczna: `Add SDK` -> `JDK`, wybierz katalog główny JDK, nie `bin/java` ani `bin\java.exe`.
+5. Otwórz `Modules` -> `Dependencies` i ustaw `Module SDK` na `Project SDK`.
+6. Otwórz `File` -> `Settings` -> `Build, Execution, Deployment` -> `Build Tools` -> `Gradle`.
+7. Ustaw `Gradle distribution` na `Wrapper`, `Gradle JVM` na Java 25, `Build and run using` i `Run tests using` na `Gradle`.
+8. W oknie Gradle wybierz `Reload All Gradle Projects`, potem `Build` -> `Build Project`.
 
-```text
-https://www.jetbrains.com/idea/download/
-```
-
-### Open Project
-
-1. Start IntelliJ IDEA.
-2. Select `Open` from the welcome screen.
-3. Select the cloned repository directory, not the `src` directory.
-4. If IntelliJ IDEA asks whether to trust the project, select `Trust Project`.
-5. IntelliJ IDEA should detect `build.gradle` and import the project as a Gradle project.
-6. Wait until dependency download and Gradle synchronization finish.
-
-After import, the Gradle tool window should contain tasks such as `build`, `test` and `bootRun`.
-
-### Find Java 25 Directory
-
-IntelliJ IDEA needs a path to the JDK installation directory. Do not select the `java` executable itself.
-
-#### Linux With SDKMAN!
-
-Display the active Java directory:
+Ścieżka JDK Linux z SDKMAN!:
 
 ```bash
 sdk home java current
 ```
 
-Typical result:
-
-```text
-/home/<user>/.sdkman/candidates/java/25.0.2-open
-```
-
-You can also check where the active Java command points:
-
-```bash
-readlink -f "$(which java)"
-```
-
-Select the JDK directory under `.sdkman/candidates/java`, not its `bin/java` file.
-
-#### Windows PowerShell
-
-Check configured Java home:
+Ścieżka JDK Windows:
 
 ```powershell
 $env:JAVA_HOME
-```
-
-If `JAVA_HOME` is empty, locate Java:
-
-```powershell
 Get-Command java | Select-Object -ExpandProperty Source
 ```
 
-Typical JDK directories:
+Sprawdź:
 
 ```text
-C:\Program Files\Microsoft\jdk-25...
-C:\Program Files\Java\jdk-25...
+[ ] Importy Spring i JUnit nie są czerwone
+[ ] `Build Project` kończy się sukcesem
+[ ] Project SDK, Module SDK i Gradle JVM wskazują Java 25
+[ ] Projekt używa Gradle Wrappera
 ```
 
-Select the JDK root directory, not `bin\java.exe`.
-
-### Configure Project SDK
-
-1. Open `File` -> `Project Structure`.
-2. Select `Project`.
-3. Open the `SDK` list.
-4. If Java 25 is already listed, select it.
-5. Otherwise select `Add SDK` -> `JDK`.
-6. Select the Java 25 directory found in the previous step.
-7. Confirm that IntelliJ IDEA recognizes the version as Java 25.
-8. Set `Language level` to `SDK default` or Java 25.
-9. Select `Apply`.
-
-Check module configuration:
-
-1. In `Project Structure`, select `Modules`.
-2. Select the application module.
-3. Open `Dependencies`.
-4. Set `Module SDK` to `Project SDK` or Java 25.
-5. Select `OK`.
-
-### Configure Gradle JVM
-
-Project SDK and Gradle JVM are separate settings. Both must use Java 25.
-
-1. Open `File` -> `Settings` on Windows or `File` -> `Settings` on Linux.
-2. Select `Build, Execution, Deployment` -> `Build Tools` -> `Gradle`.
-3. Set `Gradle distribution` to `Wrapper`.
-4. Set `Gradle JVM` to Java 25 or `Project SDK` if Project SDK is Java 25.
-5. Set `Build and run using` to `Gradle`.
-6. Set `Run tests using` to `Gradle`.
-7. Select `Apply` and `OK`.
-
-Reload the Gradle project:
-
-1. Open `View` -> `Tool Windows` -> `Gradle`.
-2. Select `Reload All Gradle Projects`.
-3. Wait until synchronization finishes.
-
-Successful synchronization means:
-
-- no Gradle sync error notification,
-- packages under `src/main/java` and `src/test/java` are recognized,
-- Spring and JUnit imports are not marked red,
-- Gradle tasks are visible in the Gradle tool window.
-
-### Verify Java Used by IntelliJ IDEA
-
-Open the IntelliJ IDEA terminal with `View` -> `Tool Windows` -> `Terminal`.
-
-Linux:
-
-```bash
-java -version
-./gradlew --version
-```
-
-Windows PowerShell:
-
-```powershell
-java -version
-.\gradlew.bat --version
-```
-
-Both outputs must indicate Java 25. In Gradle output, check the `JVM` line.
-
-### Compile Project in IntelliJ IDEA
-
-First compile using IntelliJ IDEA:
-
-1. Select `Build` -> `Build Project`.
-2. Wait until the build finishes.
-3. Open the `Build` tool window if it is not displayed automatically.
-
-Expected result:
-
-```text
-Build completed successfully
-```
-
-### Run Application in IntelliJ IDEA
-
-The main class is:
-
-```text
-com.example.demo.DemoApplication
-```
-
-Before running it, confirm that the `student-mongo` container started in section 9 is still running:
+Uruchom `DemoApplication` zielonym przyciskiem obok `main`. Wcześniej sprawdź, czy `student-mongo` działa:
 
 ```bash
 podman ps
 ```
 
-1. Open `src/main/java/com/example/demo/DemoApplication.java`.
-2. Select the green run icon next to `main` or the class name.
-3. Select `Run 'DemoApplication'`.
-4. Wait for the application to start.
+Sprawdź: log zawiera `Started DemoApplication`, a `http://localhost:8080/api/notes` zwraca `200 OK`. Pozostaw aplikację uruchomioną do kroków Postman i Compass.
 
-Expected log contains messages showing that Spring Boot started and listens on port `8080`, including a line similar to:
+Troubleshooting: przy czerwonych importach ponownie załaduj Gradle. Przy `invalid source release: 25` sprawdź Project SDK, Module SDK i Gradle JVM. Przy błędzie MongoDB sprawdź `podman ps` i URI `mongodb://localhost:27017/student_environment`.
 
-```text
-Started DemoApplication
-```
+## 8. Testcontainers
 
-Confirm the application from a browser or Postman:
+Testy uruchamiają tymczasowy, prawdziwy kontener MongoDB. Wymagają działającego Podmana, ale nie używają `student-mongo`.
 
-```text
-http://localhost:8080/api/notes
-```
+### IntelliJ IDEA
 
-Expected HTTP status is `200 OK`.
+1. Otwórz `src/test/java/com/example/demo/NoteControllerIntegrationTest.java`.
+2. Uruchom `NoteControllerIntegrationTest` zielonym przyciskiem.
+3. Uruchom wszystkie testy przez kliknięcie prawym na `src/test/java` -> `Run 'All Tests'`.
 
-Leave the application running for the Postman and MongoDB Compass steps. It will be stopped before starting the containerized application in section 15.
-
-### Troubleshooting
-
-If imports are red or dependencies are missing:
-
-1. Confirm that Gradle JVM is Java 25.
-2. Select `Reload All Gradle Projects`.
-3. Wait for dependency download to finish.
-4. Run `Build` -> `Build Project` again.
-
-If IntelliJ IDEA reports `invalid source release: 25`, `Unsupported class file major version` or no matching Java toolchain:
-
-1. Check Project SDK.
-2. Check Module SDK.
-3. Check Gradle JVM.
-4. Confirm `java -version` and Gradle `JVM` both indicate Java 25.
-
-If port `8080` is already in use, stop the other application before starting `DemoApplication` again.
-
-If the application cannot connect to MongoDB, confirm that `student-mongo` is running:
-
-```bash
-podman ps
-```
-
-The local application uses:
-
-```text
-mongodb://localhost:27017/student_environment
-```
-
-Check:
-
-```text
-[ ] IntelliJ IDEA starts
-[ ] Project opens as a Gradle project
-[ ] Project SDK is Java 25
-[ ] Module SDK uses Project SDK or Java 25
-[ ] Gradle JVM is Java 25
-[ ] Gradle distribution uses Wrapper
-[ ] Gradle synchronization finishes without errors
-[ ] `DemoApplication` and test classes are visible
-[ ] `Build Project` completes successfully
-[ ] `DemoApplication` starts and `/api/notes` returns `200 OK`
-```
-
-## 11. Integration Tests With Testcontainers
-
-Keep Podman running. The test starts a temporary MongoDB container automatically. It does not use the manually started `student-mongo` container.
-
-Spring Boot `@ServiceConnection` configures the dynamic MongoDB host and port.
-
-### Run Tests in IntelliJ IDEA
-
-Before running tests, ensure Podman is available.
-
-Linux:
-
-```bash
-podman info
-```
-
-Windows PowerShell:
-
-```powershell
-podman machine start
-podman info
-```
-
-Run the integration test:
-
-1. Open `src/test/java/com/example/demo/NoteControllerIntegrationTest.java`.
-2. Select the green run icon next to the class name.
-3. Select `Run 'NoteControllerIntegrationTest'`.
-4. Wait while Testcontainers starts MongoDB.
-
-Expected result:
-
-- test indicator is green,
-- test `savesAndReturnsNoteFromMongoDb()` passes,
-- no `MongoTimeoutException` or container connection error is displayed.
-
-Run all tests in IntelliJ IDEA:
-
-1. Right-click `src/test/java`.
-2. Select `Run 'All Tests'`.
-3. Confirm that all test indicators are green.
-
-The application started in IntelliJ IDEA may remain running on port `8080`. This does not block Testcontainers because its MongoDB container uses a dynamic port.
-
-### Run Tests From Terminal
+### Terminal
 
 Linux:
 
@@ -823,142 +298,58 @@ Windows PowerShell:
 .\gradlew.bat clean test
 ```
 
-The test verifies:
+Test sprawdza pełny przepływ: `Spring Boot -> Testcontainers MongoDB -> POST -> GET`.
+
+Sprawdź:
 
 ```text
-Spring Boot -> Testcontainers MongoDB -> POST note -> GET note
+[ ] `NoteControllerIntegrationTest` jest zielony w IntelliJ IDEA
+[ ] Wszystkie testy są zielone w IntelliJ IDEA
+[ ] `clean test` w terminalu kończy się `BUILD SUCCESSFUL`
 ```
 
-Expected result:
+Troubleshooting: sprawdź `podman info`. Na Windows uruchom `podman machine start`, potem ponów test. Nie ustawiaj stałego portu MongoDB dla Testcontainers.
 
-```text
-BUILD SUCCESSFUL
-```
-
-Check:
-
-```text
-[ ] Testcontainers starts MongoDB
-[ ] Spring Boot test context starts
-[ ] POST saves a note
-[ ] GET reads the saved note
-[ ] Integration test passes in IntelliJ IDEA
-[ ] All tests pass in IntelliJ IDEA
-[ ] All tests pass from the terminal
-[ ] `BUILD SUCCESSFUL` is printed
-```
-
-### Troubleshooting
-
-If Testcontainers cannot connect to Podman, check:
+## 9. Build aplikacji
 
 Linux:
-
-```bash
-podman info
-```
-
-Windows PowerShell:
-
-```powershell
-podman machine start
-podman info
-```
-
-Platform-specific Testcontainers configuration:
-
-```text
-https://java.testcontainers.org/supported_docker_environment/
-```
-
-Do not change the test to use a fixed MongoDB port. Testcontainers configures a dynamic port.
-
-## 12. Build Application
-
-This is the final build verification. It compiles the application, runs the tests again and creates the executable JAR.
-
-### Linux
 
 ```bash
 ./gradlew clean build
 ```
 
-### Windows PowerShell
+Windows PowerShell:
 
 ```powershell
 .\gradlew.bat clean build
 ```
 
-Expected result:
+Sprawdź:
 
 ```text
-BUILD SUCCESSFUL
+[ ] Build kończy się `BUILD SUCCESSFUL`
+[ ] W `build/libs/` istnieje plik JAR
 ```
 
-The JAR is created in:
+## 10. Postman i MongoDB Compass
 
-```text
-build/libs/
-```
+Zainstaluj Postman: <https://www.postman.com/downloads/>. Aplikacja z IntelliJ IDEA i `student-mongo` muszą nadal działać.
 
-Check:
-
-```text
-[ ] Application compiles
-[ ] Tests pass
-[ ] JAR exists in `build/libs`
-[ ] `BUILD SUCCESSFUL` is printed
-```
-
-## 13. Test API in Postman
-
-Install Postman:
-
-```text
-https://www.postman.com/downloads/
-```
-
-### GET Notes
-
-Send:
+1. Wyślij:
 
 ```http
 GET http://localhost:8080/api/notes
 ```
 
-Expected status:
+Oczekiwany status: `200 OK`. Odpowiedź jest JSON-ową tablicą; może być pusta, gdy brak wcześniejszych notatek.
 
-```text
-200 OK
-```
-
-The response is a JSON array. If no notes were added previously, it is empty:
-
-```json
-[]
-```
-
-If notes already exist, the array contains those notes. Existing data is not an error.
-
-Check:
-
-```text
-[ ] Postman starts
-[ ] GET returns `200 OK`
-[ ] Response is a JSON array
-```
-
-### POST Note
-
-Send:
+2. Wyślij:
 
 ```http
 POST http://localhost:8080/api/notes
 Content-Type: application/json
 ```
 
-Body:
-
 ```json
 {
   "text": "Test polaczenia z MongoDB",
@@ -966,126 +357,37 @@ Body:
 }
 ```
 
-Expected status:
+Oczekiwany status: `201 Created`; odpowiedź zawiera `id`, `text` i `author`. Ponów GET i sprawdź dodaną notatkę.
 
-```text
-201 Created
-```
+3. Ponów GET. Odpowiedź zawiera dodaną notatkę.
 
-Expected response:
-
-```json
-{
-  "id": "...",
-  "text": "Test polaczenia z MongoDB",
-  "author": "Student"
-}
-```
-
-The `id` is generated by MongoDB. Send GET again and check that the response contains the saved note.
-
-Check:
-
-```text
-[ ] POST returns `201 Created`
-[ ] Response contains `id`, `text` and `author`
-[ ] GET returns the saved note
-```
-
-## 14. Verify Data in MongoDB Compass
-
-Install MongoDB Compass:
-
-```text
-https://www.mongodb.com/try/download/compass
-```
-
-Open Compass and create a connection using:
+Zainstaluj MongoDB Compass: <https://www.mongodb.com/try/download/compass>. Połącz z:
 
 ```text
 mongodb://localhost:27017
 ```
 
-Confirm that Compass connects successfully. Then refresh the database list and open:
+Odśwież i otwórz `student_environment` -> `notes`. Dokument z Postmana musi być widoczny. To potwierdza przepływ `Postman -> Spring Boot -> MongoDB -> Compass`.
 
-```text
-student_environment -> notes
-```
+Troubleshooting Compass: uruchom `podman ps` i potwierdź działanie `student-mongo`.
 
-Check:
+## 11. Podman: obraz i kontener aplikacji
 
-```text
-[ ] Compass starts
-[ ] New connection dialog opens
-[ ] Compass connects to `mongodb://localhost:27017`
-[ ] `student_environment` database exists
-[ ] `notes` collection exists
-[ ] Saved document is visible
-[ ] Document fields match the POST request
-```
+Zatrzymaj aplikację z IntelliJ IDEA, aby zwolnić port `8080`. Upewnij się, że `student-mongo` nadal działa.
 
-Complete data flow:
-
-```text
-Postman -> Spring Boot -> MongoDB -> MongoDB Compass
-```
-
-### Troubleshooting
-
-If Compass cannot connect, confirm that MongoDB is running:
-
-```bash
-podman ps
-```
-
-Use this connection string:
-
-```text
-mongodb://localhost:27017
-```
-
-## 15. Build and Run Application in Podman
-
-### Build Image
-
-Build the application first, using the command from section 12.
-
-### Linux
+Zbuduj obraz w terminalu Podmana:
 
 ```bash
 podman build -t student-environment-check:latest .
 podman images
 ```
 
-### Windows PowerShell
-
-```powershell
-podman build -t student-environment-check:latest .
-podman images
-```
-
-Check:
-
-```text
-[ ] Image builds without an error
-[ ] `student-environment-check` is listed
-```
-
-### Run Application Container
-
-Ensure MongoDB is running:
-
-```bash
-podman start student-mongo
-```
-
-Stop `DemoApplication` in IntelliJ IDEA before continuing. Otherwise port `8080` is already occupied.
+Uruchom aplikację:
 
 ### Linux
 
 ```bash
-podman run --rm --name student-environment-app \
-  -p 8080:8080 \
+podman run --rm --name student-environment-app -p 8080:8080 \
   -e SPRING_MONGODB_URI=mongodb://host.containers.internal:27017/student_environment \
   student-environment-check:latest
 ```
@@ -1096,347 +398,175 @@ podman run --rm --name student-environment-app \
 podman run --rm --name student-environment-app -p 8080:8080 -e SPRING_MONGODB_URI=mongodb://host.containers.internal:27017/student_environment student-environment-check:latest
 ```
 
-Send GET and POST from Postman again.
+Ponów GET i POST z kroku 10.
 
-Check:
-
-```text
-[ ] Application container starts
-[ ] Port 8080 is available
-[ ] GET endpoint works
-[ ] POST endpoint works
-[ ] Data is saved in MongoDB
-```
-
-### Troubleshooting
-
-If port `8080` is already in use, stop the application running from IntelliJ IDEA or another container before retrying.
-
-If the application container cannot connect to MongoDB, confirm that `student-mongo` is running and use:
+Sprawdź:
 
 ```text
-SPRING_MONGODB_URI=mongodb://host.containers.internal:27017/student_environment
+[ ] Obraz `student-environment-check` istnieje
+[ ] Kontener aplikacji uruchamia się na porcie 8080
+[ ] GET zwraca `200 OK`
+[ ] POST zwraca `201 Created`
 ```
 
-## 16. Compose
+Troubleshooting: przy zajętym `8080` zatrzymaj aplikację z IDE lub inny kontener. Przy błędzie MongoDB sprawdź `student-mongo` i wartość `SPRING_MONGODB_URI`.
 
-Compose starts both MongoDB and the application from `compose.yaml`.
+## 12. Compose
 
-Stop the application container from section 15 and the standalone MongoDB container to release ports `8080` and `27017`:
+Compose uruchamia MongoDB i aplikację z `compose.yaml`.
 
-```bash
-podman ps
-```
-
-The application container from section 15 uses `--rm`, so stopping it removes it automatically. If it is still running in another terminal, stop it with `Ctrl+C`. If `student-mongo` is listed, stop it:
+1. Zatrzymaj aplikację z kroku 11 przez `Ctrl+C` i standalone MongoDB:
 
 ```bash
 podman stop student-mongo
 ```
 
-### Linux
-
-Install a Compose provider according to Podman Desktop documentation:
-
-```text
-https://podman-desktop.io/docs/compose/setting-up-compose
-```
-
-Check Compose:
+2. Skonfiguruj Compose według <https://podman-desktop.io/docs/compose/setting-up-compose>.
+3. Uruchom w tym samym terminalu:
 
 ```bash
 podman compose version
-```
-
-Build and start the services:
-
-```bash
 podman compose up --build -d
-```
-
-### Windows PowerShell
-
-Configure Compose in Podman Desktop:
-
-```text
-https://podman-desktop.io/docs/compose/setting-up-compose
-```
-
-Check Compose:
-
-```powershell
-podman compose version
-```
-
-Build and start the services:
-
-```powershell
-podman compose up --build -d
-```
-
-Check both services:
-
-```bash
 podman compose ps
 ```
 
-Run this and the following Compose commands in the same Linux terminal or Windows PowerShell used for `podman compose up`.
-
-Send the GET and POST requests from section 13 again. Both must work.
-
-Stop Compose after verification:
+4. Ponów GET i POST z kroku 10.
+5. Zatrzymaj usługi:
 
 ```bash
 podman compose down
 ```
 
-The named MongoDB volume remains for later runs. Use `podman compose down -v` only when you intentionally want to delete Compose database data.
-
-Check:
+Sprawdź:
 
 ```text
-[ ] `podman compose version` works
-[ ] Compose builds the application image
-[ ] MongoDB service starts
-[ ] Application service starts
-[ ] GET returns `200 OK`
-[ ] POST returns `201 Created`
-[ ] `podman compose down` stops the services
+[ ] `podman compose version` działa
+[ ] `podman compose ps` pokazuje usługi `app` i `mongo`
+[ ] GET zwraca `200 OK`
+[ ] POST zwraca `201 Created`
+[ ] `podman compose down` zatrzymuje usługi
 ```
 
-### Troubleshooting
-
-If Compose reports that ports `8080` or `27017` are already in use, stop standalone containers and the application running from IntelliJ IDEA:
-
-```bash
-podman ps
-podman stop student-mongo
-```
-
-If the application service exits, inspect logs:
+Troubleshooting: przy konflikcie portów zatrzymaj IntelliJ, `student-mongo` i inne kontenery. Logi:
 
 ```bash
 podman compose logs app
 podman compose logs mongo
 ```
 
-If Compose reports `docker-credential-desktop`, it usually indicates stale configuration left by a previous Docker Desktop installation. This is not expected on a clean student environment. Ask the instructor for help before changing Docker configuration.
+`docker-credential-desktop` oznacza starą konfigurację Docker Desktop; na czystym środowisku nie powinno wystąpić.
 
-## 17. minikube
+## 13. minikube
 
-Install minikube:
+Zainstaluj minikube: <https://minikube.sigs.k8s.io/docs/start/>.
 
-```text
-https://minikube.sigs.k8s.io/docs/start/
-```
+Wymagania: działający Podman, co najmniej 2 CPU, 4 GB wolnego RAM i dostęp do internetu na pierwsze pobranie obrazów.
 
-After installation, open a new terminal and check:
+Linux:
 
 ```bash
 minikube version
-```
-
-Before starting minikube, ensure that Podman is available, at least 2 CPU cores and 4 GB RAM are free, and the first image download can access the internet. The first cluster startup downloads several hundred megabytes of Kubernetes images.
-
-### Linux
-
-Install minikube using the Linux instructions. Start the cluster:
-
-```bash
 minikube start --driver=podman --container-runtime=cri-o
+minikube status
 ```
 
-### Windows PowerShell
-
-Install minikube for Windows. WinGet example:
+Windows PowerShell:
 
 ```powershell
 winget install Kubernetes.minikube
-```
-
-Ensure the Podman machine is running:
-
-```powershell
 podman machine start
 podman info
-```
-
-Start the cluster:
-
-```powershell
+minikube version
 minikube start --driver=podman --container-runtime=cri-o
-```
-
-Check cluster status:
-
-```bash
 minikube status
 ```
 
-Expected components report `Running`.
-
-Check:
+Sprawdź:
 
 ```text
-[ ] `minikube version` works
-[ ] Cluster starts with the Podman driver
-[ ] `minikube status` reports running components
+[ ] `minikube version` działa
+[ ] `minikube status` pokazuje komponenty `Running`
+[ ] Klaster używa drivera Podman i runtime CRI-O
 ```
 
-### Troubleshooting
-
-If startup fails, inspect status and logs:
-
-```bash
-minikube status
-minikube logs
-```
-
-On Windows, confirm that Podman machine works:
-
-```powershell
-podman machine start
-podman info
-```
-
-On Windows, common causes of failure are:
-
-- Podman machine is stopped or has insufficient CPU or memory.
-- First-run image downloads are blocked by a proxy, firewall or unstable connection.
-- An incomplete old minikube profile remains after an interrupted startup.
-
-Check available Podman-machine resources:
-
-```powershell
-podman machine list
-```
-
-If Podman machine has insufficient resources, stop it and create a new machine with enough resources according to Podman Desktop documentation. This deletes containers stored in the replaced machine.
-
-To recreate a broken local cluster:
+Troubleshooting: użyj `minikube logs`. Po przerwanym starcie wykonaj:
 
 ```bash
 minikube delete
 minikube start --driver=podman --container-runtime=cri-o
 ```
 
-## 18. kubectl and Kubernetes Deployment
+Na Windows sprawdź `podman machine list`; częste problemy to zbyt mało CPU/RAM, zatrzymana machine, proxy lub firewall blokujący obrazy.
 
-Install kubectl:
+## 14. kubectl i Kubernetes
 
-Linux:
+Zainstaluj kubectl:
 
-```text
-https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
-```
+- Linux: <https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/>
+- Windows: <https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/>
 
-Windows:
-
-```text
-https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
-```
-
-Check kubectl and system pods:
+Sprawdź klienta i pody systemowe:
 
 ```bash
 kubectl version --client
 kubectl get pods --all-namespaces
 ```
 
-The output must contain pods from namespace:
+Oczekiwane są pody w `kube-system`.
 
-```text
-kube-system
-```
-
-Build the application JAR before creating the minikube image:
+Zbuduj JAR i obraz wewnątrz minikube:
 
 ### Linux
 
 ```bash
 ./gradlew clean build
+minikube image build -t student-environment-check:latest .
 ```
 
 ### Windows PowerShell
 
 ```powershell
 .\gradlew.bat clean build
-```
-
-Build the application image directly inside minikube:
-
-```bash
 minikube image build -t student-environment-check:latest .
 ```
 
-This avoids differences between the local Podman image store and the minikube image store.
-
-Deploy MongoDB and the application:
+Wdróż aplikację:
 
 ```bash
 kubectl apply -f k8s/mongo.yaml
 kubectl apply -f k8s/app.yaml
-```
-
-Wait for deployments:
-
-```bash
 kubectl rollout status deployment/mongo
 kubectl rollout status deployment/student-environment-app
-```
-
-Check resources:
-
-```bash
 kubectl get pods
 kubectl get services
 ```
 
-Pods must have status `Running` and readiness `1/1`.
+Pody muszą mieć stan `Running` i gotowość `1/1`.
 
-Forward the application port:
+Przekieruj port w osobnym terminalu:
 
 ```bash
 kubectl port-forward service/student-environment-app 8080:8080
 ```
 
-Keep this terminal open. Send GET and POST from Postman to:
-
-```text
-http://localhost:8080/api/notes
-```
-
-Stop port forwarding with `Ctrl+C`.
-
-Remove application resources after verification:
+Przez Postmana wykonaj GET i POST z kroku 10. Zatrzymaj forwarding przez `Ctrl+C`, a potem usuń zasoby:
 
 ```bash
 kubectl delete -f k8s/app.yaml
 kubectl delete -f k8s/mongo.yaml
-```
-
-Stop minikube:
-
-```bash
 minikube stop
 ```
 
-Check:
+Sprawdź:
 
 ```text
-[ ] `kubectl version --client` works
-[ ] `kubectl get pods --all-namespaces` shows `kube-system` pods
-[ ] Application image builds inside minikube
-[ ] MongoDB pod is `Running` and ready
-[ ] Application pod is `Running` and ready
-[ ] GET and POST work through `kubectl port-forward`
-[ ] Kubernetes resources are removed
-[ ] minikube stops successfully
+[ ] `kubectl get pods --all-namespaces` pokazuje pody `kube-system`
+[ ] Pody `mongo` i `student-environment-app` mają stan `Running` oraz `1/1`
+[ ] GET i POST działają przez `kubectl port-forward`
+[ ] Zasoby i minikube są zatrzymane po teście
 ```
 
-### Troubleshooting
-
-If a pod does not start, inspect it:
+Troubleshooting:
 
 ```bash
 kubectl get pods
@@ -1445,50 +575,23 @@ kubectl logs deployment/student-environment-app
 kubectl logs deployment/mongo
 ```
 
-If the application reports `ErrImageNeverPull`, build the image inside minikube again and restart the deployment:
+Przy `ErrImageNeverPull` uruchom ponownie `minikube image build -t student-environment-check:latest .`, a potem:
 
 ```bash
-minikube image build -t student-environment-check:latest .
 kubectl rollout restart deployment/student-environment-app
 ```
 
-If port `8080` is occupied, stop IntelliJ IDEA, Compose or the standalone application container before running `kubectl port-forward`.
+## 15. Android Studio
 
-## 19. Android Studio
+Zainstaluj Android Studio: <https://developer.android.com/studio/install>.
 
-Install Android Studio:
+1. Utwórz pustą aplikację: <https://developer.android.com/studio/projects/create-project>.
+2. Utwórz emulator: <https://developer.android.com/studio/run/managing-avds>.
+3. Uruchom aplikację na emulatorze: <https://developer.android.com/studio/run/emulator>.
 
-```text
-https://developer.android.com/studio/install
-```
-
-Create a basic empty application:
-
-```text
-https://developer.android.com/studio/projects/create-project
-```
-
-Create and start an emulator:
-
-```text
-https://developer.android.com/studio/run/managing-avds
-https://developer.android.com/studio/run/emulator
-```
-
-Check:
-
-```text
-[ ] Android Studio starts
-[ ] Empty project is created
-[ ] Emulator is created and starts
-[ ] Basic application runs without errors
-```
-
-Android is an independent installation check. It does not need to connect to this backend.
+Kryterium: Android Studio, emulator i pusta aplikacja uruchamiają się bez błędów.
 
 ## Final Result
-
-Environment is ready when all relevant checklist items are marked and the commands for the selected platform succeed.
 
 Linux:
 
@@ -1504,7 +607,7 @@ Windows PowerShell:
 .\gradlew.bat clean build
 ```
 
-Expected result:
+Oczekiwany wynik:
 
 ```text
 BUILD SUCCESSFUL
