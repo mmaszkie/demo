@@ -21,6 +21,12 @@ spec:
           env:
             - name: SPRING_MONGODB_URI
               value: mongodb://mongo:27017/student_environment
+          startupProbe:
+            httpGet:
+              path: /api/notes
+              port: 8080
+            failureThreshold: 30
+            periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /api/notes

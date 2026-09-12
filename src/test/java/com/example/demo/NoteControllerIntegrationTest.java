@@ -11,7 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.mongodb.MongoDBContainer;
+
+import java.util.UUID;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -41,6 +43,8 @@ class NoteControllerIntegrationTest {
 
     @Test
     void savesAndReturnsNoteFromMongoDb() throws Exception {
+        String text = "MongoDB connection test " + UUID.randomUUID();
+
         mockMvc.perform(get("/api/notes"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isEmpty());
@@ -49,18 +53,18 @@ class NoteControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
-                                  "text": "Test polaczenia z MongoDB",
+                                  "text": "%s",
                                   "author": "Student"
                                 }
-                                """))
+                                """.formatted(text)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").isNotEmpty())
-                .andExpect(jsonPath("$.text").value("Test polaczenia z MongoDB"))
+                .andExpect(jsonPath("$.text").value(text))
                 .andExpect(jsonPath("$.author").value("Student"));
 
         mockMvc.perform(get("/api/notes"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].text").value("Test polaczenia z MongoDB"))
+                .andExpect(jsonPath("$[0].text").value(text))
                 .andExpect(jsonPath("$[0].author").value("Student"));
     }
 
