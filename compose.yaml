@@ -1,0 +1,28 @@
+services:
+  mongo:
+    image: docker.io/library/mongo:8
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: mongosh --quiet --eval 'db.adminCommand({ping:1}).ok' || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: Containerfile
+    image: student-environment-check:latest
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_MONGODB_URI: mongodb://mongo:27017/student_environment
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+volumes:
+  mongo-data:
