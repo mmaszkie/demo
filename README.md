@@ -45,7 +45,7 @@ Default database: `student_environment`. Default collection: `notes`.
 
 1. Install Discord: <https://discord.com/download>.
 2. Create or sign in to an account.
-3. Join the `Allegro UMK 26/27` server and open `#backend`.
+3. Join the `Allegro UMK 26/27` server using <https://discord.gg/6sjmwcN48e> and open `#backend`.
 4. Create or sign in to a GitHub account: <https://github.com/join>.
 
 ## 2. Git and application repository
