@@ -1,8 +1,6 @@
 # Student environment check
 
-Ready-to-run Spring Boot application for verifying development environment. No additional code is required.
-
-Supported environments: Linux and Windows PowerShell. On Windows, use native JDK 25; SDKMAN! is supported only on Linux.
+This application helps you check whether your development environment is ready for backend and mobile projects. Follow instructions and use provided code. The environment is ready for course exercises after all applicable checks pass. There are two supported environments in this guide: Linux and Windows PowerShell.
 
 ## Application
 
@@ -12,6 +10,18 @@ Supported environments: Linux and Windows PowerShell. On Windows, use native JDK
 | `POST` | `http://localhost:8080/api/notes` | Saves a note in MongoDB  |
 
 Default database: `student_environment`. Default collection: `notes`.
+
+## How to use this guide
+
+Each numbered step follows the same structure:
+
+- **What is installed** explains which tool or component you set up.
+- **What is checked** explains what the step is meant to verify.
+- Commands show what to run in the terminal or application.
+- Checklists and expected results show when the step is complete.
+- **Troubleshooting** contains the most common fixes when a step fails.
+
+Follow steps in order and mark a check only after you have confirmed the expected result.
 
 ## Checklist
 
